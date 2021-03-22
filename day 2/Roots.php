@@ -1,13 +1,6 @@
-<?php
-if($_POST){
-    $first=is_numeric($_POST['first_number'])?$_POST['first_number']:0;
-    $second=is_numeric($_POST['second_number'])?$_POST['second_number']:0;
-    $third=is_numeric($_POST['third_number'])?$_POST['third_number']:0;
-    echo max($first,$second,$third);
-}
-?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <title>Title</title>
     <!-- Required meta tags -->
@@ -20,13 +13,22 @@ if($_POST){
 
 <body>
     <div class="col-3 x-auto m-auto mt-5 text-center">
-    <h3 class="h3">Enter Value</h3>
+        <h3 class="h3">Enter Value</h3>
         <form method="post" class="form-control col-4 px-2">
-            <input type="text" name='first_number' class="form-control mx-auto my-2" placeholder="first number">
-            <input type="text" name='second_number' class="form-control mx-auto my-2" placeholder="second number">
-            <input type="text" name='third_number' class="form-control mx-auto my-2" placeholder="third number">
-            <button class="btn btn-primary x-auto yt-2 mt-2">Max</button>
+            <input type="number" name='number' class="form-control mx-auto my-2" placeholder="number">
+            <input type="number" name='root' class="form-control mx-auto my-2" placeholder="root">
+            <button class="btn btn-primary x-auto yt-2 mt-2">Get root</button>
         </form>
+        <h3 class="h3">
+            <?php
+            if ($_POST) {
+                $first = is_numeric($_POST['number']) ? +$_POST['number'] : 0;
+                $root= is_numeric($_POST['root']) ? +$_POST['root'] : 0;
+                $msg=$first**(1/$root);
+                echo $msg;
+            }
+            ?>
+        </h3>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
