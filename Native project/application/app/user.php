@@ -3,21 +3,13 @@ include_once('database.php');
 include_once('operations.php');
 class User extends database implements operation
 {
-    private $id;
     private $name;
     private $password;
     private $email;
     private $phone;
     private $photo;
+    private $code;
 
-    public function getID()
-    {
-        return $this->id;
-    }
-    public function setID($id)
-    {
-        $this->id=$id;
-    }
     public function getName()
     {
         return $this->name;
@@ -59,15 +51,32 @@ class User extends database implements operation
         $this->phone=$phone;
     }
     function updateData()
-    {
+    { 
+        $query='update `users` `name`="'.$this->name.'", `phone`='.$this->phone.', photo="'.$this->photo.'"
+        ,`password`="'.$this->password.'" where `email`="'.$this->email.'"';
+        $this->runDML($query);
     }
     function insertData()
     {
+        $this->code=rand(10000,99999);
+        $query='insert into  `users`(`name`,`password`,`email`,`code`) 
+        values
+        ("'.$this->name.'","'.$this->password.'","'.$this->email.'",'.$this->code.')';
+        $this->runDML($query);
     }
     function deleteData()
     {
+
     }
     function selectAllData()
     {
+        $query='select * from `users` where `email`="'.$this->email.'"';
+       $rs= $this->runDQL($query);
+        print_r($rs);
+    }
+    function insert(){
+        
     }
 }
+
+?>
