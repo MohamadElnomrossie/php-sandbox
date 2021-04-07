@@ -12,7 +12,8 @@ class database
         if ($this->con->connect_error) {
             die("Connection Failed:$this->con->connect_error");
         } else {
-            echo ("Connected");
+           
+           
         }
     }
     public function runDML($query)
@@ -29,7 +30,8 @@ class database
     public function runDQL($query)
     {
         $result=$this->con->query($query);
-        if($result->num_rows>0){
+
+        if($result->num_rows > 0){
             return $result;
         }
         else{

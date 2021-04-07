@@ -53,7 +53,7 @@
     
     /* Best selling active */
     $('.featured-product-active').owlCarousel({
-        loop: true,
+        loop: false,
         nav: false,
         autoplay: false,
         autoplayTimeout: 5000,
