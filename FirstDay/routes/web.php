@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.layout.layout');
+    return view('admin.products.all');
 });
+Route::group(['prefix'=>'products','namespace'=>'admin\products'],function(){
+    Route::get('all','productController@index')->name('products.all');
+    Route::get('create','productController@create');
+    Route::get('edit','productController@edit');
+    Route::post('save','productController@save');
+   
+});
+Route::get('/','admin\mainController@dashboard');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
