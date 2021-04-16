@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 
 class mainController extends Controller
 {
-    public function dashboard(){
+    public function index(){
         return view('admin.dashboard');
+    }
+
+    public function home(){
+        return view('welcome');
     }
 }

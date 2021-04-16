@@ -9,7 +9,7 @@
       </div>
       <!-- /.card-header -->
       <!-- form start -->
-      <form method='POST' action="{{url('products/save')}}" enctype="multipart/form-data">
+      <form method='POST' action="{{route('products.save')}}" enctype="multipart/form-data">
         @csrf
         <div class="card-body row">
           <div class="form-group col-6">
@@ -82,7 +82,7 @@
         <!-- /.card-body -->
 
         <div class="card-footer">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" name='create' class="btn btn-primary">Submit</button>
           <button type="cancel" class="btn btn-danger">Cancel</button>
         </div>
       </form>

@@ -15,25 +15,21 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.products.all');
+// Route::get('/', function () {
+//     return view('admin.products.all');
+// });
+Route::get('/','admin\mainController@home');
+Route::group(['prefix'=>'dashboard','middleware'=>['auth','verified']],function(){
+    Route::get('/','admin\mainController@index')->name('dashboard');
+    Route::group(['prefix'=>'products','namespace'=>'admin\products'],function(){
+        Route::get('all','productController@index')->name('products.all');
+        Route::get('create','productController@create')->name('products.create');
+        Route::get('{method}/{id}','productController@edit')->name('products.edit')->middleware('password.confirm');
+        Route::post('save','productController@save')->name('products.save');
 });
-Route::group(['prefix'=>'products','namespace'=>'admin\products'],function(){
-    Route::get('all','productController@index')->name('products.all');
-    Route::get('create','productController@create');
-    Route::get('edit','productController@edit');
-    Route::post('save','productController@save');
    
 });
-Route::get('/','admin\mainController@dashboard');
-Auth::routes();
+Auth::routes(['verify'=>true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

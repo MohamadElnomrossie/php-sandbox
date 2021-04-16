@@ -48,15 +48,14 @@ $(function () {
                  </tr>
                   </thead>
                   <tbody>
-                  
                   @forelse ($products as $key=>$value)
                   <tr>
                     <td>{{$value->id}}</td>
                     <td>{{$value->arName}}</td>
                     <td>{{$value->enName}}</td>
                     <td class="text-center">
-                      <a href="{{url('products/edit')}}" class='btn btn-warning rounded col-5'>Edit</a>
-                      <a href="#" class='btn btn-danger rounded col-5'>Delete</a></td>
+                      <a href="{{route('products.edit',['edit',$value->id])}}" class='btn btn-warning rounded col-5'>Edit</a>
+                      <a href="{{route('products.edit',['delete',$value->id])}}" class='btn btn-danger rounded col-5'>Delete</a></td>
                   </tr>
                   @empty
                       <p>No users</p>
